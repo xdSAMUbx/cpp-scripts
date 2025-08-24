@@ -4,9 +4,9 @@
 std::vector<int> bubbleSort(std::vector<int> &vec)
 {
     int temp;
-    for (int i = 0; i < vec.size(); i++)
+    for (int i = 0; i < vec.size() - 1; i++)
     {
-        for (int j = 0; j < vec.size() + i - 1; j++)
+        for (int j = 0; j < vec.size() - i - 1; j++)
         {
             if (vec[j] > vec[j + 1])
             {
