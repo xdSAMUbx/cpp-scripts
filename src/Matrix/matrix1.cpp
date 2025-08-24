@@ -6,8 +6,8 @@
 int main()
 {
     int rows = 5, cols = 5;
-    std::vector<int> shape = {5, 5};
-    std::vector<std::vector<int>> mat(rows, std::vector<int>(cols));
+    std::vector<int> shape = {4, 5};
+    std::vector<std::vector<int>> mat(rows, std::vector<int>(cols, 0));
     std::vector<int> *ptr = mat.data();
     int cont = 1;
     for (int i = 0; i < rows; i++)
