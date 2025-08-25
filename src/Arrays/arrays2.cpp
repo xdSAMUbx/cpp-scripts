@@ -6,10 +6,8 @@
 int main()
 {
     std::vector<int> v;
-    int x = 0, y = 100, z = 11;
+    int x = 0, y = 100, z = 10;
     v = ones(z);
-    for (auto val : v)
-        std::cout << val << " ";
-    std::cout << std::endl;
+    showVector(v);
     return 0;
 }
