@@ -8,6 +8,6 @@ int main()
     std::vector<int> v;
     int x = 0, y = 100, z = 10;
     v = ones(z);
-    showVector(v);
+    printV(v);
     return 0;
 }
