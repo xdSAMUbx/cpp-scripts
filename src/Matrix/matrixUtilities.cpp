@@ -2,10 +2,25 @@
 #include <vector>
 #include <array>
 
+std::vector<int> T(std::vector<int> &mat, std::vector<int> &shape)
+{
+    int rows = shape[0], cols = shape[1];
+    std::vector<int> res;
+    res.reserve(rows * cols);
+    for (int j = 0; j < cols; j++)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            res.emplace_back(mat[i * cols + j]);
+        }
+    }
+    return res;
+}
+
 std::vector<int> eye(const int &n)
 {
     std::vector<int> res;
-    res.reserve(n * n + 1);
+    res.reserve(n * n);
     for (int i = 0; i < (n * n); i++)
         res.emplace_back((i % (n + 1) == 0) ? 1 : 0);
     return res;
@@ -22,16 +37,17 @@ std::vector<int> matrix(const std::vector<std::vector<int>> &mat)
     return res;
 }
 
-void printMC(const std::vector<int> &mat, const std::array<int, 2> &shape)
+void printMC(const std::vector<int> &mat, const std::vector<int> &shape)
 {
 
-    for (int i = 0; i < mat.size() / shape[1]; i++)
+    int rows = shape[0], cols = shape[1];
+    for (int i = 0; i < rows; i++)
     {
-        for (int j = 0; j < mat.size() / shape[0]; j++)
+        for (int j = 0; j < cols; j++)
         {
-            std::cout << mat[i * shape[1] + j] << " ";
+            std::cout << mat[i * cols + j] << " ";
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
 }
 
