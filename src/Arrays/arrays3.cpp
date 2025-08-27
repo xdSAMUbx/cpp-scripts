@@ -7,7 +7,7 @@
 int main()
 {
     std::vector<std::vector<int>> vec(2, std::vector<int>(2, 0));
-    std::array<int, 2> shape = {4, 4};
+    std::vector<int> shape = {4, 4};
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < 2; j++)

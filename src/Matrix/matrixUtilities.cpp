@@ -37,7 +37,7 @@ std::vector<int> matrix(const std::vector<std::vector<int>> &mat)
     return res;
 }
 
-void printMC(const std::vector<int> &mat, const std::vector<int> &shape)
+void printMC(const std::vector<double> &mat, const std::vector<int> &shape)
 {
 
     int rows = shape[0], cols = shape[1];
