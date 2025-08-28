@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-void printV(const std::vector<int> &vec)
+void printV(const std::vector<double> &vec)
 {
     std::cout << "[ ";
     for (int val : vec)

@@ -1,6 +1,7 @@
 add_subdirectory(Algorithms)
 add_subdirectory(Arrays)
 add_subdirectory(Basics)
+add_subdirectory(C)
 add_subdirectory(DSA)
 add_subdirectory(Matrix)
 add_subdirectory(Pointers)
