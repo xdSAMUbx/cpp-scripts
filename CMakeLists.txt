@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(myProjec LANGUAGES CXX)
+project(myProjec LANGUAGES C CXX)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/bin")
 
