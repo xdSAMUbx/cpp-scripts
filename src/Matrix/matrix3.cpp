@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include "contigousMatrix.h"
+#include "matrix.h"
 
 std::vector<double> matrix2(const int &n)
 {

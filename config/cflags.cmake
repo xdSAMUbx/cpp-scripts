@@ -4,4 +4,5 @@ set(CFLAGS_COMMON
     "-O2"
     "-fconcepts"
     "-std=c++20"
+    "-fpermissive"
     )
