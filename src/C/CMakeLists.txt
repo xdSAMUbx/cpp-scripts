@@ -1,1 +1,0 @@
-add_executable(holaMundoC holaMundo.c)
