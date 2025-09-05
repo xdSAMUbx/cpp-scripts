@@ -1,3 +1,3 @@
 add_executable(holaMundo holaMundo.cpp)
 
-add_subdirectory(Arrays)
+add_subdirectory(DSA)
