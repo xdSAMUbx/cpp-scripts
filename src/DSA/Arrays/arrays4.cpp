@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// Generador del vector aleatorio
 template<typename T>
 std::vector<T> randGen(const T& max, const int& n)
 {
@@ -15,6 +16,7 @@ std::vector<T> randGen(const T& max, const int& n)
   return res;
 }
 
+// Generador del print del array
 template<typename T>
 void printV(const std::vector<T>& vec)
 {
