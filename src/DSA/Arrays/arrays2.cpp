@@ -4,7 +4,7 @@
 template<typename T>
 void printV(const std::vector<T>& vec)
 {
-  std::cout << "[ ";
+  std::cout << "[";
   for (auto val : vec)
     std::cout << val << " ";
   std::cout << "]\n";

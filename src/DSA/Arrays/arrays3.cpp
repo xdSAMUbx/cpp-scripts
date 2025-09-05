@@ -42,10 +42,22 @@ std::vector<T> weight(const std::vector<T>& vec)
   for (T val : vec)
     sum += val;
   
-  res.reserve(vec.size());
+  res.resize(vec.size());
   for (size_t i = 0; i < vec.size(); i++)
-       res.emplace_back(static_cast<T>(vec[i])/sum);
+       res[i] = vec[i]/sum;
   return res;
+}
+
+template<typename T>
+T promW(const std::vector<T>& vals, const std::vector<T>& pesos)
+{
+  T num = 0, den = 0;
+  for(size_t i = 0; i < vals.size(); i++)
+  {
+    num += vals[i]*pesos[i];
+    den += pesos[i];
+  }
+  return num/den;
 }
 
 int main()
@@ -67,6 +79,8 @@ int main()
   w = weight(vec);
   std::cout << "El vector de pesos es: ";
   printV(w);
+
+  std::cout << "El promedio ponderado es: " << promW(vec, w) << "\n";
   
   return 0;
 }
