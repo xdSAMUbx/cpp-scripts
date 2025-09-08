@@ -1,0 +1,10 @@
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/config")
+include(cflags)
+
+add_executable(holaMundoC holamundo.c)
+add_executable(tempC progTemp.c)
+add_executable(input input.c)
+add_executable(arr1 arrays1.c)
+add_executable(arr2 arrays2.c)
+add_executable(arr3 arrays3.c)
+add_executable(arr4 arrays4.c)
