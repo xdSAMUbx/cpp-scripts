@@ -120,11 +120,14 @@ std::array<int, 2> findMat(const int &n) {
   return {res, res2};
 }
 
-std::vector<std::vector<double>> sptGrid(const std::string &path, const int &n,
-                                         int &crs) {
-  std::vector<std::vector<double>> res;
-  bbox recorte = getBBox(path, crs);
+struct GridXY {
+  std::vector<double> x;
+  std::vector<double> y;
+};
 
+GridXY sptGrid(const std::string &path, const int &n, int &crs) {
+  GridXY res;
+  bbox recorte = getBBox(path, crs);
   if (recorte.limits.empty())
     return res;
 
@@ -132,23 +135,24 @@ std::vector<std::vector<double>> sptGrid(const std::string &path, const int &n,
   int row = shape[0];
   int col = shape[1];
 
-  res.resize(row * col, std::vector<double>(2));
+  size_t totalPoints = static_cast<size_t>(row) * static_cast<size_t>(col);
+  res.x.resize(totalPoints);
+  res.y.resize(totalPoints);
 
-  double stpX = 0.0, stpY = 0.0;
-  if (row > 1)
-    stpX =
-        (recorte.limits[2] - recorte.limits[0]) / static_cast<double>(row - 1);
-  if (col > 1)
-    stpY =
-        (recorte.limits[3] - recorte.limits[1]) / static_cast<double>(col - 1);
+  double stpX = (row > 1) ? (recorte.limits[2] - recorte.limits[0]) /
+                                static_cast<double>(row - 1)
+                          : 0.0;
+  double stpY = (col > 1) ? (recorte.limits[3] - recorte.limits[1]) /
+                                static_cast<double>(col - 1)
+                          : 0.0;
 
-  int idx = 0;
+  size_t idx = 0;
   for (int i = 0; i < row; ++i) {
     double x = recorte.limits[0] + i * stpX;
     for (int j = 0; j < col; ++j) {
       double y = recorte.limits[1] + j * stpY;
-      res[idx][0] = x;
-      res[idx][1] = y;
+      res.x[idx] = x;
+      res.y[idx] = y;
       ++idx;
     }
   }
@@ -160,14 +164,16 @@ std::vector<std::vector<double>> sptGrid(const std::string &path, const int &n,
 int main() {
   std::string path = "/home/xdsamubx/miniconda3/envs/cenv/cpp-scripts/data/"
                      "poligonos-localidades.shp";
-  int crs = 4326;
-  int n = 50000; // número aproximado de puntos de la grilla
+  int crs = 4326; // EPSG deseado
+  int n = 10000;  // número de puntos aproximado
 
-  auto grid = sptGrid(path, n, crs);
+  GridXY grid = sptGrid(path, n, crs);
 
-  for (auto &pt : grid) {
-    std::cout << "(" << pt[0] << ", " << pt[1] << ")\n";
+  std::cout << "Grilla generada: " << grid.x.size() << " puntos\n";
+
+  // Mostrar los primeros 10 puntos como prueba
+  for (size_t i = 0; i < grid.x.size(); ++i) {
+    std::cout << "(" << grid.x[i] << ", " << grid.y[i] << ")\n";
   }
-
   return 0;
 }
