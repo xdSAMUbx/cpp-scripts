@@ -14,31 +14,31 @@ node *initial(int *data){
   return res;
 }
 
-void addInit(node *behind, int *data){
+void addInit(node *head, int *data){
   node *newNode = malloc(sizeof *newNode);
   newNode->value = *data;
-  behind->next = newNode;
+  head->next = newNode;
   newNode->next = NULL;
 }
 
-void addLast(node *behind, int *data){
+void addLast(node *head, int *data){
   node *newNode = malloc(sizeof *newNode);
   newNode->value = *data;
   newNode->next = NULL; 
   // Recorre hasta llegar al penultimo
-  node *temp = behind;
+  node *temp = head;
   while(temp->next != NULL){
     temp = temp->next;
   }
   temp->next = newNode;
 }
 
-void addAt(node *behind, int *pos, int *data){
+void addAt(node *head, int *pos, int *data){
   node *newNode = malloc(sizeof *newNode);
   newNode->value = *data;
   newNode->next = NULL;
 
-  node *temp = behind;
+  node *temp = head;
   for (int i = 0; i < *pos; i++){
     temp = temp->next;
   }
@@ -50,6 +50,24 @@ void addAt(node *behind, int *pos, int *data){
 
   newNode->next = temp->next;
   temp->next = newNode;
+}
+
+// ** Pasa la dirección del puntero 
+void deleteat(node **head, int *pos){
+  if (*pos == 0){
+    node *del = *head;
+    *head = del->next;
+    free(del);
+  }
+
+  node *prev = *head;
+  for (int i = 0; i < *pos - 1 && prev->next !=NULL; i++){
+    prev = prev->next;
+  }
+
+  node *del = prev->next;
+  prev->next = del->next;
+  free(del);
 }
 
 int main(){
