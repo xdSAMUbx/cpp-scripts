@@ -23,6 +23,12 @@ template <typename T> struct Point {
 template <typename T> struct gridXY {
   std::vector<T> x;
   std::vector<T> y;
+
+  void shwGrid() {
+    for (size_t i = 0; i < x.size(); i++) {
+      std::cout << "(" << x[i] << ", " << y[i] << ")\n";
+    }
+  }
 };
 // ---------------------------------------------------------------------------
 // -------------------------- FUNCIONES --------------------------------------
@@ -37,26 +43,32 @@ std::array<size_t, 2> findMat(const size_t &n) {
   return {rows, cols};
 }
 
-std::vector<Point<double>> grid(const std::vector<double> &limits,
-                                const size_t &n) {
-  if (n <= 0)
-    throw std::invalid_argument("n no puede ser menor o igual a 0.");
-
-  std::vector<Point<double>> res;
+gridXY<double> gridGen(const std::array<double, 4> &bbox, const size_t &n) {
+  gridXY<double> res;
   std::array<size_t, 2> shape = findMat(n);
-
-  double stpX = (limits[2] - limits[0]) / static_cast<double>(shape[0] - 1);
-  double stpY = (limits[3] - limits[1]) / static_cast<double>(shape[1] - 1);
-
-  res.resize(shape[0] * shape[1]);
-  for (int i = 0; i < shape[0]; i++) {
-    res[shape[0] * i + j] = limits[0] + static_cast<double>(i) * stepX;
-    for (int j = 0; i < shape[1]; j++) {
+  if (!(bbox[2] > bbox[0] && bbox[3] > bbox[1]))
+    throw std::invalid_argument("BBox invalido: minX<maxX y minY<maxY");
+  // bbox = {minX, minY, maxX, maxY};
+  const size_t nx = shape[0];
+  const size_t ny = shape[1];
+  double stpX =
+      (nx > 1) ? (bbox[2] - bbox[0]) / static_cast<double>(nx - 1) : 0.0;
+  double stpY =
+      (ny > 1) ? (bbox[3] - bbox[1]) / static_cast<double>(ny - 1) : 0.0;
+  res.x.reserve(nx * ny);
+  res.y.reserve(nx * ny);
+  for (size_t i = 0; i < nx; i++) {
+    double x = bbox[0] + static_cast<double>(i) * stpX;
+    for (size_t j = 0; j < ny; j++) {
+      double y = bbox[1] + static_cast<double>(j) * stpY;
+      res.x.emplace_back(x);
+      res.y.emplace_back(y);
     }
   }
-
   return res;
 }
+
+gridXY<double> gridGen(const double &area, const size_t &n) {}
 
 int main() {
   Point p1(1, 2);
