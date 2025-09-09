@@ -68,10 +68,13 @@ gridXY<double> gridGen(const std::array<double, 4> &bbox, const size_t &n) {
   return res;
 }
 
-gridXY<double> gridGen(const double &area, const size_t &n) {}
+// gridXY<double> gridGen(const double &area, const size_t &n) {}
 
 int main() {
   Point p1(1, 2);
   p1.shwPoint();
+  std::array<double, 4> limits = {1.0, 1., 10., 10.};
+  gridXY<double> grilla1 = gridGen(limits, 100);
+  grilla1.shwGrid();
   return 0;
 }
