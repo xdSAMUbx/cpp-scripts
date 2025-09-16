@@ -9,3 +9,4 @@ target_link_libraries(gdal1 PRIVATE dependencias ${GDAL_LIBS})
 
 target_include_directories(gdal2 PRIVATE ${GDAL_CFLAGS})
 target_link_libraries(gdal2 PRIVATE dependencias ${GDAL_LIBS})
+
