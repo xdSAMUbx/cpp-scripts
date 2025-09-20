@@ -57,5 +57,6 @@ int main(){
   mat matrix = J(n,m);
   printM(&matrix);
   endMat(&matrix);
+  printf("Esto es una prueba");
   return 0;
 }
